@@ -1,0 +1,39 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(app)/layout,_N_T_/(app)/sales/layout,_N_T_/(app)/sales/page,_N_T_/sales"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGFwcCk/sales/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 64,
+    "slots": {
+      "children": {
+        "hints": 96,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 160,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/1089f31335f3fb2ee9d8e33a14c55c610fc526922e2384a53f1fc5ae5cca52b8/$/sales",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(app)/sales/page"
+    },
+    "isFallback": false
+  }
+}

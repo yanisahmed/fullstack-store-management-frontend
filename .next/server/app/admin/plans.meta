@@ -1,0 +1,44 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(app)/layout,_N_T_/(app)/admin/layout,_N_T_/(app)/admin/plans/layout,_N_T_/(app)/admin/plans/page,_N_T_/admin/plans"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGFwcCk/admin/plans/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 64,
+    "slots": {
+      "children": {
+        "hints": 96,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 96,
+                "slots": {
+                  "children": {
+                    "hints": 160,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/72cd64c3e77e7e561b25c9f9ac6a45971ac1572fd6519e4e9d0409afdc42db60/$/admin/plans",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(app)/admin/plans/page"
+    },
+    "isFallback": false
+  }
+}
