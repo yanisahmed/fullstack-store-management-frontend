@@ -1,5 +1,5 @@
 const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000/api/v1';
-
+console.log('API base URL:', BASE);
 export class ApiError extends Error {
   constructor(public status: number, message: string) { super(message); }
 }
