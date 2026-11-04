@@ -5,9 +5,11 @@ import { FormEvent, useState } from 'react';
 import { AuthShell } from '@/components/AuthShell';
 import { Button, Field, inputCls, Notice } from '@/components/ui';
 import { useAuth } from '@/lib/auth';
+import { useI18n } from '@/lib/i18n';
 
 export default function Login() {
   const { login } = useAuth();
+  const { t } = useI18n();
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,12 +23,12 @@ export default function Login() {
     setBusy(false);
   }
   return (
-    <AuthShell title="Sign in" sub="Use the email your shop admin registered." footer={<>New shop? <Link href="/register" className="font-medium text-brand">Create an account</Link></>}>
+    <AuthShell title={t('auth.signIn')} sub={t('auth.signInSub')} footer={<>{t('auth.newShop')} <Link href="/register" className="font-medium text-brand">{t('auth.createAccount')}</Link></>}>
       {error && <Notice>{error}</Notice>}
       <form onSubmit={submit} className="space-y-4">
-        <Field label="Email"><input className={inputCls} type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></Field>
-        <Field label="Password"><input className={inputCls} type="password" required value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" /></Field>
-        <Button className="w-full" disabled={busy}>{busy ? 'Signing in…' : 'Sign in'}</Button>
+        <Field label={t('c.email')}><input className={inputCls} type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></Field>
+        <Field label={t('c.password')}><input className={inputCls} type="password" required value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" /></Field>
+        <Button className="w-full" disabled={busy}>{busy ? t('auth.signingIn') : t('auth.signIn')}</Button>
       </form>
     </AuthShell>
   );

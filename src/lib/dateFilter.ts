@@ -1,19 +1,6 @@
 export type DateFilterValue = { period: string; month: string; year: string; from: string; to: string };
 
-export const PERIODS: { value: string; label: string }[] = [
-  { value: 'all', label: 'All time' },
-  { value: 'today', label: 'Today' },
-  { value: 'yesterday', label: 'Yesterday' },
-  { value: 'this_week', label: 'This week' },
-  { value: 'last_7_days', label: 'Last 7 days' },
-  { value: 'last_30_days', label: 'Last 30 days' },
-  { value: 'this_month', label: 'This month' },
-  { value: 'last_month', label: 'Last month' },
-  { value: 'this_year', label: 'This year' },
-  { value: 'month', label: 'Pick a month' },
-  { value: 'year', label: 'Pick a year' },
-  { value: 'custom', label: 'Custom dates' },
-];
+export const PERIODS = ['all', 'today', 'yesterday', 'this_week', 'last_7_days', 'last_30_days', 'this_month', 'last_month', 'this_year', 'month', 'year', 'custom'] as const;
 
 export function defaultDateFilter(period = 'all'): DateFilterValue {
   const n = new Date();

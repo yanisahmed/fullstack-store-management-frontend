@@ -1,8 +1,9 @@
 'use client';
 import { ButtonHTMLAttributes, ReactNode, useEffect } from 'react';
+import { dateLocale, useI18n } from '@/lib/i18n';
 
 export const money = (n: number) => '৳' + new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(n || 0);
-export const fmtDate = (s?: string) => (s ? new Date(s).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '-');
+export const fmtDate = (s?: string) => (s ? new Date(s).toLocaleDateString(dateLocale(), { day: '2-digit', month: 'short', year: 'numeric' }) : '-');
 export const inputCls = 'w-full rounded-md border border-ink-line bg-white px-3 py-2 text-sm placeholder:text-ink-muted/60 focus:border-brand';
 
 const variants = {
@@ -25,12 +26,15 @@ export function Field({ label, hint, children }: { label: string; hint?: string;
   );
 }
 
-export function PageHeader({ title, sub, action }: { title: string; sub?: string; action?: ReactNode }) {
+export function PageHeader({ title, sub, action, lead }: { title: string; sub?: string; action?: ReactNode; lead?: ReactNode }) {
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-      <div>
+      <div className="flex items-center gap-4">
+        {lead}
+        <div>
         <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
         {sub && <p className="mt-1 text-sm text-ink-muted">{sub}</p>}
+        </div>
       </div>
       {action}
     </div>
@@ -47,6 +51,7 @@ export function Notice({ kind = 'error', children }: { kind?: 'error' | 'info' |
 }
 
 export function Modal({ title, onClose, children, wide }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean }) {
+  const { t } = useI18n();
   useEffect(() => {
     const h = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
     window.addEventListener('keydown', h);
@@ -57,7 +62,7 @@ export function Modal({ title, onClose, children, wide }: { title: string; onClo
       <div role="dialog" aria-modal="true" aria-label={title} className={`w-full rounded-lg bg-white p-5 shadow-xl ${wide ? 'max-w-3xl' : 'max-w-md'}`} onMouseDown={(e) => e.stopPropagation()}>
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold">{title}</h2>
-          <button onClick={onClose} aria-label="Close" className="rounded px-2 text-xl leading-none text-ink-muted hover:bg-paper">×</button>
+          <button onClick={onClose} aria-label={t('c.cancel')} className="rounded px-2 text-xl leading-none text-ink-muted hover:bg-paper">×</button>
         </div>
         {children}
       </div>
@@ -66,7 +71,10 @@ export function Modal({ title, onClose, children, wide }: { title: string; onClo
 }
 
 export const Empty = ({ children }: { children: ReactNode }) => <div className="px-4 py-10 text-center text-sm text-ink-muted">{children}</div>;
-export const Loading = () => <div className="px-4 py-10 text-center text-sm text-ink-muted">Loading…</div>;
+export const Loading = () => {
+  const { t } = useI18n();
+  return <div className="px-4 py-10 text-center text-sm text-ink-muted">{t('c.loading')}</div>;
+};
 
 export const Badge = ({ kind = 'neutral', children }: { kind?: 'neutral' | 'warn' | 'ok' | 'bad'; children: ReactNode }) => {
   const c = { neutral: 'bg-paper text-ink-muted', warn: 'bg-marigold-tint text-marigold', ok: 'bg-ok-tint text-ok', bad: 'bg-bad-tint text-bad' }[kind];

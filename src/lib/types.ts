@@ -8,8 +8,9 @@ export interface Store {
   _id: string; name: string; status: 'active' | 'suspended'; enabledModules: ModuleName[];
   subscription?: { status: 'trial' | 'active' | 'expired'; expiresAt?: string; planId?: { name: string } };
 }
-export interface Product { _id: string; name: string; sku: string; category?: string; unit: 'pcs' | 'kg'; costPrice: number; salePrice: number; stock: number; lowStockThreshold: number }
-export interface Customer { _id: string; name: string; phone?: string; address?: string; dueBalance: number }
+export interface Product { _id: string; name: string; sku: string; category?: string; unit: 'pcs' | 'kg'; imageToken?: string | null; costPrice: number; salePrice: number; stock: number; lowStockThreshold: number }
+export interface Customer { _id: string; name: string; phone?: string; address?: string; note?: string; imageToken?: string | null; dueBalance: number }
+export interface CategoryRow { _id: string; name: string; productCount: number }
 export interface LedgerEntry { _id: string; type: 'sale' | 'payment' | 'adjustment'; amount: number; balanceAfter: number; note?: string; createdAt: string }
 export interface SaleRow { _id: string; invoiceNo: string; total: number; paidAmount: number; dueAmount: number; paymentMethod: string; createdAt: string; customerId?: { name: string } }
 export interface Plan { _id: string; name: string; code: string; priceBDT: number; durationDays: number; modules: ModuleName[]; isActive: boolean }
